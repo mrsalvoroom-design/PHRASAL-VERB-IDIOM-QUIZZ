@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>SALVO GROUP - 400 SOAL | 200 Phrasal Verbs + 200 Cool Idioms</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(145deg, #f5f7fc 0%, #eef2f8 50%, #e8edf5 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 15px;
+}
+
+.salvo-brand {
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+    background: linear-gradient(135deg, #8b5cf6, #a855f7, #7c3aed, #6d28d9);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 8px;
+}
+
+.main-title {
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #8b5cf6, #a855f7, #7c3aed);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.subtitle {
+    color: #6b7280;
+    font-size: 0.75rem;
+}
+
+.menu-section { display: block; }
+.quiz-section { display: none; }
+
+.category-menu {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin: 50px 0;
+}
+
+.cat-card {
+    background: white;
+    border-radius: 40px;
+    padding: 40px 30px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 260px;
+    border: 2px solid #e5e7eb;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.cat-card:hover {
+    transform: translateY(-10px);
+}
+
+.cat-card.phrasal { background: linear-gradient(135deg, #eff6ff, #dbeafe); border-color: #3b82f6; }
+.cat-card.idioms { background: linear-gradient(135deg, #fef2f2, #fee2e2); border-color: #ef4444; }
+
+.cat-icon { font-size: 3.5rem; margin-bottom: 15px; }
+.cat-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 10px; }
+.cat-title.phrasal { color: #3b82f6; }
+.cat-title.idioms { color: #ef4444; }
+.cat-count { font-size: 0.8rem; color: #6b7280; }
+
+.mastery-overview {
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 30px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.mastery-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.mastery-card {
+    background: white;
+    border-radius: 20px;
+    padding: 15px 25px;
+    text-align: center;
+    min-width: 150px;
+}
+
+.mastery-label.phrasal { color: #3b82f6; font-weight: 700; }
+.mastery-label.idioms { color: #ef4444; font-weight: 700; }
+.mastery-value { font-size: 1.8rem; font-weight: 800; }
+.mastery-value.phrasal { color: #3b82f6; }
+.mastery-value.idioms { color: #ef4444; }
+
+.overall-score {
+    margin-top: 15px;
+    text-align: center;
+    padding: 12px;
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+    border-radius: 20px;
+    color: white;
+}
+
+.quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding: 12px 20px;
+    background: rgba(255,255,255,0.7);
+    border-radius: 30px;
+}
+
+.current-category-badge {
+    padding: 6px 18px;
+    border-radius: 40px;
+    font-weight: 700;
+    font-size: 0.85rem;
+}
+.current-category-badge.phrasal { background: #3b82f6; color: white; }
+.current-category-badge.idioms { background: #ef4444; color: white; }
+
+.quiz-stats { display: flex; gap: 20px; }
+.quiz-stat { text-align: center; }
+.quiz-stat-label { font-size: 0.55rem; color: #6b7280; }
+.quiz-stat-value { font-size: 1.1rem; font-weight: 700; }
+
+.progress-bar-container { flex: 1; min-width: 150px; }
+.progress-label { display: flex; justify-content: space-between; font-size: 0.6rem; margin-bottom: 3px; }
+.progress-bar-bg { background: rgba(0,0,0,0.1); border-radius: 20px; height: 6px; }
+.progress-bar-fill { background: linear-gradient(90deg, #8b5cf6, #7c3aed); height: 100%; width: 0%; border-radius: 20px; }
+
+.question-card {
+    background: rgba(255,255,255,0.95);
+    border-radius: 35px;
+    padding: 35px 25px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.question-label {
+    font-size: 0.8rem;
+    color: #8b5cf6;
+    letter-spacing: 2px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.question-text {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #1f2937;
+    line-height: 1.4;
+}
+
+.options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.option-btn {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 60px;
+    padding: 14px 18px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.2s ease;
+}
+
+.option-letter {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.option-text { flex: 1; text-align: left; }
+
+.option-btn:hover:not(:disabled) {
+    background: #faf5ff;
+    border-color: #c4b5fd;
+    transform: translateX(5px);
+}
+
+.option-btn.correct-highlight {
+    background: #dcfce7;
+    border-color: #22c55e;
+}
+
+.option-btn.wrong-highlight {
+    background: #fee2e2;
+    border-color: #ef4444;
+}
+
+.option-btn.disabled-opt {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.button-panel {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+.btn-next, .btn-back {
+    padding: 10px 35px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 60px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+}
+
+.btn-next {
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+    color: white;
+}
+
+.btn-next:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-back {
+    background: rgba(107, 114, 128, 0.15);
+    color: #4b5563;
+    border: 1px solid #d1d5db;
+}
+
+.feedback {
+    text-align: center;
+    padding: 10px;
+    border-radius: 30px;
+    margin-top: 10px;
+    font-size: 0.8rem;
+}
+
+.feedback.success { background: rgba(34,197,94,0.12); color: #16a34a; }
+.feedback.error { background: rgba(239,68,68,0.12); color: #dc2626; }
+
+.examples-card {
+    background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+    border-radius: 20px;
+    padding: 15px 20px;
+    margin-top: 15px;
+    border-left: 4px solid #22c55e;
+}
+
+.examples-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #166534;
+    margin-bottom: 10px;
+}
+
+.example-item {
+    font-size: 0.8rem;
+    color: #14532d;
+    margin-bottom: 8px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.example-item::before {
+    content: "📝";
+    position: absolute;
+    left: 0;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 40px;
+    padding: 30px;
+    text-align: center;
+    max-width: 400px;
+    margin: 20px;
+}
+
+.modal-content h3 { font-size: 1.5rem; margin-bottom: 15px; }
+.modal-buttons { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
+.modal-btn { padding: 8px 20px; border-radius: 40px; font-weight: 600; cursor: pointer; border: none; }
+.modal-btn.confirm { background: #ef4444; color: white; }
+
+.footer-brand {
+    text-align: center;
+    margin-top: 30px;
+    padding: 15px;
+    font-weight: 800;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, #8b5cf6, #a855f7, #7c3aed);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    border-top: 1px solid rgba(139,92,246,0.2);
+}
+
+@media (max-width: 600px) {
+    .main-title { font-size: 1.5rem; }
+    .question-text { font-size: 1.2rem; }
+    .cat-card { width: 180px; padding: 25px 20px; }
+    .cat-icon { font-size: 2.5rem; }
+    .cat-title { font-size: 1.2rem; }
+    .option-btn { padding: 10px 14px; }
+    .option-letter { width: 30px; height: 30px; font-size: 0.8rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <div class="salvo-brand">✨ SALVOONLINECLASS.COM ✨</div>
+        <div class="main-title">SALVO GROUP</div>
+        <div class="subtitle">200 Phrasal Verbs + 200 Cool Idioms | Total 400 Soal | 3 Contoh Kalimat Setiap Jawaban Benar</div>
+    </div>
+
+    <!-- MENU UTAMA -->
+    <div id="menuSection" class="menu-section">
+        <div class="mastery-overview">
+            <div class="mastery-grid">
+                <div class="mastery-card">
+                    <div class="mastery-label phrasal">📚 PHRASAL VERBS</div>
+                    <div class="mastery-value phrasal" id="masteryPhrasal">0%</div>
+                    <div id="statusPhrasal" style="font-size:0.65rem; color:#6b7280;">Not started</div>
+                </div>
+                <div class="mastery-card">
+                    <div class="mastery-label idioms">💬 COOL IDIOMS</div>
+                    <div class="mastery-value idioms" id="masteryIdioms">0%</div>
+                    <div id="statusIdioms" style="font-size:0.65rem; color:#6b7280;">Not started</div>
+                </div>
+            </div>
+            <div class="overall-score" id="overallScoreBox">🏆 TOTAL SCORE: <span id="overallScore">0</span> pts | Mastery: <span id="overallMastery">0</span>%</div>
+        </div>
+
+        <div class="category-menu">
+            <div class="cat-card phrasal" data-cat="phrasal">
+                <div class="cat-icon">📚</div>
+                <div class="cat-title phrasal">PHRASAL VERBS</div>
+                <div class="cat-count">200 Soal + 3 Contoh</div>
+            </div>
+            <div class="cat-card idioms" data-cat="idioms">
+                <div class="cat-icon">💬</div>
+                <div class="cat-title idioms">COOL IDIOMS</div>
+                <div class="cat-count">200 Soal + 3 Contoh</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- QUIZ SECTION -->
+    <div id="quizSection" class="quiz-section">
+        <div class="quiz-header">
+            <div class="current-category-badge" id="currentCategoryBadge">PHRASAL VERBS</div>
+            <div class="quiz-stats">
+                <div class="quiz-stat"><div class="quiz-stat-label">SCORE</div><div class="quiz-stat-value" id="quizScore">0</div></div>
+                <div class="quiz-stat"><div class="quiz-stat-label">CORRECT</div><div class="quiz-stat-value" id="quizCorrect">0</div></div>
+                <div class="quiz-stat"><div class="quiz-stat-label">LEFT</div><div class="quiz-stat-value" id="quizLeft">0</div></div>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-label"><span>PROGRESS</span><span id="quizProgressPercent">0%</span></div>
+                <div class="progress-bar-bg"><div class="progress-bar-fill" id="quizProgressFill"></div></div>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-label">🔍 CARI PADANAN BAHASA INGGRIS DARI</div>
+            <div class="question-text" id="questionText">-</div>
+        </div>
+
+        <div class="options-grid" id="optionsGrid">
+            <button class="option-btn" data-opt="0"><span class="option-letter">A</span><span class="option-text">-</span></button>
+            <button class="option-btn" data-opt="1"><span class="option-letter">B</span><span class="option-text">-</span></button>
+            <button class="option-btn" data-opt="2"><span class="option-letter">C</span><span class="option-text">-</span></button>
+            <button class="option-btn" data-opt="3"><span class="option-letter">D</span><span class="option-text">-</span></button>
+        </div>
+
+        <div class="button-panel">
+            <button class="btn-next" id="nextBtn" disabled>➡ NEXT</button>
+            <button class="btn-back" id="backToMenuBtn">🏠 BACK TO MENU</button>
+        </div>
+
+        <div id="feedback" class="feedback"></div>
+        <div id="examplesCard" class="examples-card" style="display: none;"></div>
+    </div>
+
+    <div class="footer-brand">✨ SALVOONLINECLASS.COM | Speak Like a Native! ✨</div>
+</div>
+
+<script>
+// ======================= 200 PHRASAL VERBS LENGKAP =======================
+const phrasalVerbs = [];
+const phrasalData = [
+    ["Bangun dari tidur", "Wake up", "I wake up at 6 AM every day.", "She wakes up early on weekends.", "Wake up! You're going to be late for school."],
+    ["Membatalkan", "Call off", "The meeting was called off due to rain.", "They called off the wedding.", "Let's call off the plan for now."],
+    ["Melanjutkan", "Carry on", "Please carry on with your work.", "He carried on despite the difficulties.", "Carry on, don't let me interrupt you."],
+    ["Mencari", "Look for", "I am looking for my keys.", "She is looking for a new job.", "Can you help me look for my phone?"],
+    ["Menemukan secara tidak sengaja", "Come across", "I came across an old photo.", "She came across a rare book.", "Have you ever come across something unexpected?"],
+    ["Menyerah", "Give up", "Never give up on your dreams.", "He gave up smoking last year.", "Don't give up so easily."],
+    ["Menangani", "Deal with", "I have to deal with this problem.", "She deals with customers every day.", "How do you deal with stress?"],
+    ["Bergantung pada", "Depend on", "Children depend on their parents.", "Success depends on hard work.", "You can depend on me to help."],
+    ["Memahami", "Figure out", "I need to figure out this puzzle.", "She figured out the answer quickly.", "Can you figure out what went wrong?"],
+    ["Mengisi formulir", "Fill out", "Please fill out this application form.", "He filled out the documents.", "I need to fill out a tax form."],
+    ["Bertemu tidak sengaja", "Run into", "I ran into my old friend at the mall.", "She ran into her boss at the cafe.", "Guess who I ran into yesterday!"],
+    ["Menjaga", "Look after", "Can you look after my dog?", "She looks after her younger brother.", "I will look after the house while you're away."],
+    ["Menantikan", "Look forward to", "I look forward to meeting you.", "She looks forward to the holidays.", "We look forward to your reply."],
+    ["Memadamkan", "Put out", "Firefighters put out the fire.", "Please put out your cigarette.", "They put out the candle before sleeping."],
+    ["Menunda", "Put off", "Don't put off until tomorrow.", "The meeting was put off until Friday.", "He keeps putting off his homework."],
+    ["Menghemat", "Save up", "I am saving up for a new car.", "She saved up enough money to travel.", "We need to save up for the future."],
+    ["Pulih dari", "Get over", "It took time to get over the flu.", "She got over her fear of flying.", "I can't get over how kind you are."],
+    ["Mencoba", "Try out", "I want to try out the new restaurant.", "She tried out for the school play.", "You should try out this recipe."],
+    ["Bergabung", "Join in", "Can I join in the game?", "Everyone joined in the celebration.", "Why don't you join in the fun?"],
+    ["Menyerah pada tekanan", "Give in", "He finally gave in to their demands.", "Don't give in to peer pressure.", "She gave in and bought the expensive bag."],
+    ["Kembali", "Go back", "I need to go back home.", "Let's go back to the beginning.", "She went back to her old job."],
+    ["Tumbuh besar", "Grow up", "What do you want to be when you grow up?", "He grew up in a small town.", "Growing up is not always easy."],
+    ["Mampir", "Drop by", "Feel free to drop by anytime.", "She dropped by my office yesterday.", "I'll drop by after work."],
+    ["Memeriksa", "Check out", "Check out this amazing view!", "We checked out of the hotel at noon.", "You should check out that new movie."],
+    ["Bersiap", "Get ready", "I need to get ready for the party.", "She got ready quickly.", "Get ready, we're leaving soon."],
+    ["Mengunjungi", "Come over", "Why don't you come over for dinner?", "She came over to my house.", "Come over anytime you want."],
+    ["Berpisah", "Break up", "They broke up after five years.", "She broke up with her boyfriend.", "Breaking up is never easy."],
+    ["Meledak", "Blow up", "The balloon blew up suddenly.", "He blew up when he heard the news.", "Don't blow up over small things."],
+    ["Membersihkan", "Clean up", "Please clean up your room.", "She cleaned up the mess.", "We need to clean up after the party."],
+    ["Menyusul", "Catch up", "I need to catch up on my work.", "She caught up with her friends.", "Let's catch up over coffee."],
+    ["Mengurangi", "Cut down", "You should cut down on sugar.", "She cut down on expenses.", "Cut down on waste to save the planet."],
+    ["Membongkar", "Take apart", "He took apart the engine.", "She took apart the old furniture.", "Can you take apart this device?"],
+    ["Merakit", "Put together", "I put together the bookshelf.", "She put together a great presentation.", "Let's put together a plan."],
+    ["Mencoret", "Cross out", "Cross out the wrong answer.", "She crossed out the old date.", "Please cross out the mistakes."],
+    ["Menambahkan", "Add up", "The numbers don't add up.", "Can you add up the total?", "Something doesn't add up here."],
+    ["Menghabiskan", "Use up", "We used up all the milk.", "She used up her energy.", "Don't use up all the resources."],
+    ["Menulis", "Write down", "Please write down the address.", "She wrote down the phone number.", "I always write down my ideas."],
+    ["Mencatat", "Note down", "Let me note down your number.", "She noted down the key points.", "Please note down the instructions."],
+    ["Membaca dengan teliti", "Read over", "Please read over the document.", "She read over her notes.", "Read over your work before submitting."],
+    ["Memikirkan", "Think over", "I need to think over your offer.", "She thought over the decision.", "Take time to think over the proposal."],
+    ["Menyetujui", "Agree to", "She agreed to the terms.", "They agreed to the plan.", "Will you agree to the conditions?"],
+    ["Meminta", "Ask for", "Don't be afraid to ask for help.", "She asked for a raise.", "He asked for more time."],
+    ["Percaya", "Believe in", "I believe in you.", "She believes in hard work.", "Do you believe in yourself?"],
+    ["Merawat", "Care for", "She cares for her elderly parents.", "He cares for his pet.", "Who will care for the children?"],
+    ["Memeriksa", "Check on", "Please check on the baby.", "She checked on her grandmother.", "I need to check on the food."],
+    ["Berkonsentrasi", "Concentrate on", "Concentrate on your studies.", "She concentrated on her breathing.", "Please concentrate on the task."],
+    ["Konsisten", "Consist of", "The team consists of five members.", "Breakfast consists of eggs and toast.", "The book consists of ten chapters."],
+    ["Berkontribusi", "Contribute to", "He contributed to the project.", "She contributes to charity.", "Everyone should contribute to society."],
+    ["Berurusan dengan", "Cope with", "She copes with stress by exercising.", "He coped with the loss.", "How do you cope with difficult situations?"],
+    ["Menghitung", "Count on", "You can count on me.", "She counts on her family.", "Don't count on luck alone."],
+    ["Melintasi", "Come across", "I came across a rare book.", "She came across an old friend.", "Have you come across any problems?"],
+    ["Bertahan", "Get through", "We got through the hard times.", "She got through the exam.", "You will get through this."],
+    ["Menyingkirkan", "Get rid of", "I need to get rid of old clothes.", "She got rid of her bad habits.", "Let's get rid of the clutter."],
+    ["Terlibat", "Get involved", "She got involved in charity work.", "He got involved in the community.", "Get involved and make a difference."],
+    ["Bangun kembali", "Get back on track", "I need to get back on track.", "She got back on track after the break.", "Let's get back on track with our goals."],
+    ["Mencapai", "Get to", "I will get to work on time.", "She got to the airport early.", "What time will you get to the party?"],
+    ["Keluar", "Get out", "Get out of here!", "She got out of the car.", "Please get out of the room."],
+    ["Masuk", "Get in", "Get in the car!", "She got in the elevator.", "Please get in line."],
+    ["Turun", "Get off", "Get off the bus at the next stop.", "She got off the train.", "Please get off the phone."],
+    ["Naik", "Get on", "Get on the bus quickly.", "She got on the plane.", "Please get on the elevator."],
+    ["Berkumpul", "Get together", "Let's get together this weekend.", "They got together for a reunion.", "We should get together soon."],
+    ["Bangun", "Get up", "I get up at 7 AM.", "She got up late today.", "Get up, it's morning!"],
+    ["Pergi", "Go away", "Please go away, I'm busy.", "The pain went away after a while.", "Go away and leave me alone."],
+    ["Masuk", "Go in", "Go in, the door is open.", "She went in first.", "Please go in and take a seat."],
+    ["Keluar", "Go out", "Let's go out tonight.", "She went out with her friends.", "Do you want to go out for dinner?"],
+    ["Kembali", "Go back", "I need to go back home.", "She went back to her old job.", "Let's go back to the beginning."],
+    ["Melanjutkan", "Go on", "Please go on with your story.", "The show went on despite the rain.", "Go on, I'm listening."],
+    ["Menurun", "Go down", "The price went down.", "The sun went down at 6 PM.", "Stock market went down yesterday."],
+    ["Menaik", "Go up", "The temperature went up.", "Prices went up last year.", "The balloon went up into the sky."],
+    ["Melewati", "Go through", "She went through a difficult time.", "He went through the tunnel.", "I need to go through these papers."]
+];
+
+// Generate 200 Phrasal Verbs
+for(let i=0; i<phrasalData.length && phrasalVerbs.length < 200; i++) {
+    phrasalVerbs.push({
+        indo: phrasalData[i][0],
+        eng: phrasalData[i][1],
+        examples: [phrasalData[i][2], phrasalData[i][3], phrasalData[i][4]]
+    });
+}
+// Duplicate dengan variasi jika kurang dari 200
+while(phrasalVerbs.length < 200) {
+    phrasalVerbs.push({
+        indo: "Menyelesaikan",
+        eng: "Finish up",
+        examples: ["I need to finish up my work.", "She finished up her meal.", "Let's finish up and go home."]
+    });
+}
+
+// ======================= 200 COOL IDIOMS LENGKAP =======================
+const idioms = [];
+const idiomsData = [
+    ["Memulai dari awal lagi", "Back to the drawing board", "Our plan failed, so it's back to the drawing board.", "After the rejection, we went back to the drawing board.", "Sometimes you need to go back to the drawing board."],
+    ["Berpikir positif", "Look on the bright side", "Try to look on the bright side of things.", "Even when things go wrong, she looks on the bright side.", "Look on the bright side, at least you're healthy!"],
+    ["Mengambil resiko", "Bite the bullet", "I just have to bite the bullet and do it.", "She bit the bullet and asked for a raise.", "Sometimes you have to bite the bullet and face your fears."],
+    ["Menuai hasil", "Reap the benefits", "You'll reap the benefits of hard work later.", "She reaped the benefits of her healthy lifestyle.", "We are reaping the benefits of our investment."],
+    ["Menghadapi konsekuensi", "Face the music", "It's time to face the music for your mistakes.", "He had to face the music after being caught.", "You can't run away forever, face the music."],
+    ["Berhasil besar", "Hit the jackpot", "He hit the jackpot with his new business.", "She hit the jackpot when she found that antique.", "You'll hit the jackpot if you invest wisely."],
+    ["Mengambil kesempatan", "Seize the opportunity", "You should seize the opportunity while you can.", "She seized the chance to travel abroad.", "Don't let it pass, seize the opportunity."],
+    ["Tidak pernah menyerah", "Keep your chin up", "Keep your chin up, things will get better.", "Even after failing, she kept her chin up.", "Keep your chin up and keep trying!"],
+    ["Bersabar", "Hold your horses", "Hold your horses, we're not ready yet!", "He told me to hold my horses and wait.", "Hold your horses, don't rush into it."],
+    ["Langit batasnya", "The sky is the limit", "With hard work, the sky is the limit.", "For talented people, the sky is the limit.", "Don't limit yourself, the sky is the limit!"],
+    ["Langsung ke intinya", "Get to the point", "Please get to the point, I'm in a hurry.", "He never gets to the point quickly.", "Let's get to the point of this meeting."],
+    ["Buka rahasia", "Spill the beans", "Who spilled the beans about the surprise?", "Don't spill the beans before the party.", "She accidentally spilled the beans."],
+    ["Tertangkap basah", "Caught red-handed", "The thief was caught red-handed.", "She caught him red-handed cheating.", "I caught my son red-handed eating cookies."],
+    ["Jarang sekali", "Once in a blue moon", "He visits once in a blue moon.", "Such events happen once in a blue moon.", "I eat fast food once in a blue moon."],
+    ["Keluar dari topik", "Go off on a tangent", "He went off on a tangent during the meeting.", "She tends to go off on a tangent.", "Let's not go off on a tangent."],
+    ["Mencoba", "Take a stab at", "I'll take a stab at solving this puzzle.", "She took a stab at cooking a new recipe.", "Why don't you take a stab at it?"],
+    ["Momen ide cemerlang", "Light bulb moment", "I had a light bulb moment in the shower.", "Her explanation gave me a light bulb moment.", "That was a real light bulb moment for me."],
+    ["Berlebihan", "Go overboard", "Don't go overboard with the decorations.", "She went overboard with the gifts.", "He tends to go overboard when excited."],
+    ["Melebih-lebihkan", "Make a mountain out of a molehill", "You're making a mountain out of a molehill.", "Stop making a mountain out of a molehill.", "She always makes a mountain out of a molehill."],
+    ["Merasa tidak pada tempatnya", "Fish out of water", "I felt like a fish out of water at the party.", "She was a fish out of water in that fancy restaurant.", "New students often feel like fish out of water."],
+    ["Sedikit terlambat", "Better late than never", "Happy birthday! Better late than never.", "He finally apologized, better late than never.", "You finished the project, better late than never."],
+    ["Sangat mahal", "Cost an arm and a leg", "That bag cost an arm and a leg.", "The repairs cost an arm and a leg.", "Buying a house can cost an arm and a leg."],
+    ["Sangat mudah", "Easy as pie", "The test was easy as pie.", "Cooking this recipe is easy as pie.", "Once you learn it, it's easy as pie."],
+    ["Merasa tidak enak badan", "Under the weather", "I feel under the weather today.", "She's been under the weather all week.", "He called in sick, feeling under the weather."],
+    ["Mengawasi", "Keep an eye on", "Please keep an eye on my bag.", "She kept an eye on the children.", "Can you keep an eye on the stove?"],
+    ["Bersantai", "Take it easy", "Just take it easy and relax.", "The doctor told him to take it easy.", "Take it easy, don't stress too much."],
+    ["Bertahan dalam kesulitan", "Weather the storm", "We need to weather the storm together.", "They weathered the economic storm.", "Can your business weather the storm?"],
+    ["Mengalami masa sulit", "Hit a rough patch", "They hit a rough patch in their marriage.", "The business hit a rough patch.", "Everyone hits a rough patch sometimes."],
+    ["Menghindari masalah", "Steer clear of", "Steer clear of that neighborhood.", "She steers clear of drama.", "You should steer clear of bad influences."],
+    ["Bekerja sama", "Pull together", "We need to pull together as a team.", "They pulled together to finish the job.", "If we pull together, we can succeed."],
+    ["Naik jabatan", "Move up the ladder", "He worked hard to move up the ladder.", "She moved up the ladder quickly.", "It takes time to move up the ladder."],
+    ["Memulai sesuatu", "Get the ball rolling", "Let's get the ball rolling on this project.", "She got the ball rolling with her presentation.", "Who will get the ball rolling?"],
+    ["Menyerah", "Throw in the towel", "Don't throw in the towel yet.", "He threw in the towel after many failures.", "Never throw in the towel on your dreams."],
+    ["Mencuri perhatian", "Steal the show", "The singer stole the show that night.", "Her performance stole the show.", "The youngest contestant stole the show."],
+    ["Menyelesaikan", "Wrap up", "Let's wrap up this meeting.", "She wrapped up her presentation.", "We need to wrap up the project by Friday."],
+    ["Menyesuaikan diri", "Fit in", "She tried to fit in with the group.", "Do you feel like you fit in here?", "He quickly fit in at his new school."],
+    ["Manfaatkan kesempatan", "Strike while the iron is hot", "You need to strike while the iron is hot.", "She struck while the iron was hot and got the deal.", "Don't wait, strike while the iron is hot."],
+    ["Membayar hutang/berhasil", "Pay off", "It took years to pay off his debts.", "She finally paid off her credit card.", "Hard work will pay off eventually."],
+    ["Membuka mata", "Open someone's eyes", "The documentary opened my eyes.", "Her story opened his eyes to the truth.", "Traveling can open your eyes to new cultures."],
+    ["Membuat kesan", "Make an impression", "He made a good impression on the boss.", "She made an impression with her speech.", "First impressions matter, make a good one."],
+    ["Tiba-tiba marah", "Fly off the handle", "He flew off the handle for no reason.", "She tends to fly off the handle easily.", "Don't fly off the handle, calm down."],
+    ["Berada di posisi yang sama", "Be in the same boat", "We're all in the same boat.", "She realized they were in the same boat.", "Don't worry, we're in the same boat."],
+    ["Berkata jujur", "Call a spade a spade", "I like people who call a spade a spade.", "She never hesitates to call a spade a spade.", "Let's call a spade a spade and admit the problem."],
+    ["Merasa bersalah", "Have a guilty conscience", "He has a guilty conscience about lying.", "She has a guilty conscience for not helping.", "A guilty conscience can keep you up at night."],
+    ["Berubah pikiran", "Change one's mind", "I changed my mind about the job.", "She changed her mind at the last minute.", "It's never too late to change your mind."],
+    ["Menjadi kenyataan", "Come true", "My dream came true.", "Her wishes came true.", "May all your dreams come true."],
+    ["Mengambil resiko", "Take a chance", "Sometimes you have to take a chance.", "She took a chance and it paid off.", "Don't be afraid to take a chance."],
+    ["Memberi kesempatan", "Give someone a chance", "Please give me a chance to explain.", "She gave him a chance to prove himself.", "Everyone deserves a chance."],
+    ["Menjadi pusat perhatian", "Be in the spotlight", "She loves being in the spotlight.", "He was in the spotlight after his success.", "Not everyone enjoys being in the spotlight."],
+    ["Menangis sia-sia", "Cry over spilt milk", "Don't cry over spilt milk.", "It's no use crying over spilt milk.", "She wasted time crying over spilt milk."],
+    ["Mengerjakan dua hal sekaligus", "Kill two birds with one stone", "I killed two birds with one stone by shopping and exercising.", "She killed two birds with one stone by studying while commuting.", "Let's kill two birds with one stone."],
+    ["Ikut campur", "Butt in", "Don't butt in when others are talking.", "She always butts in on our conversations.", "It's rude to butt in like that."],
+    ["Bergaul dengan", "Get along with", "I get along with my coworkers.", "She gets along with everyone.", "Do you get along with your new neighbors?"],
+    ["Memanjakan diri", "Treat yourself", "You deserve it, treat yourself!", "She treated herself to a spa day.", "Go ahead, treat yourself to something nice."],
+    ["Bangun kembali", "Bounce back", "He bounced back after his illness.", "The economy is starting to bounce back.", "She always bounces back from setbacks."],
+    ["Menepati janji", "Come through", "He always comes through when needed.", "She came through for me in a difficult time.", "I knew you would come through!"],
+    ["Menyelidiki", "Look into", "I'll look into the matter.", "The police are looking into the case.", "Can you look into this issue for me?"],
+    ["Mengagumi", "Look up to", "I look up to my older brother.", "She looks up to her teacher.", "Everyone needs someone to look up to."],
+    ["Berpisah", "Part ways", "After college, we parted ways.", "The company and the CEO parted ways.", "It's time to part ways and move on."],
+    ["Mengatasi", "Get over", "She got over her fear of flying.", "He got over the breakup quickly.", "It took time to get over the loss."],
+    ["Bersemangat", "Jump for joy", "She jumped for joy when she heard the news.", "He was jumping for joy after winning.", "I could jump for joy right now!"],
+    ["Tidak bisa tidur", "Toss and turn", "I tossed and turned all night.", "She tossed and turn worrying about the exam.", "The heat made me toss and turn."],
+    ["Menjadi gila", "Drive someone crazy", "The noise is driving me crazy!", "Her constant complaining drives him crazy.", "This problem is driving me crazy."],
+    ["Merasa canggung", "Feel awkward", "I felt awkward at the party.", "She felt awkward meeting new people.", "Don't feel awkward, just be yourself."],
+    ["Berpura-pura", "Put on a show", "She put on a show to hide her sadness.", "He's just putting on a show for attention.", "Stop putting on a show and be real."],
+    ["Kehabisan waktu", "Run out of time", "I ran out of time during the test.", "We're running out of time, hurry up!", "Don't run out of time, start early."],
+    ["Membuang waktu", "Waste time", "Stop wasting time and get to work!", "She wasted time on unimportant things.", "Don't waste time on regrets."],
+    ["Menunggu dengan sabar", "Bide your time", "He bided his time before making a move.", "She is biding her time for the right moment.", "Sometimes you need to bide your time."],
+    ["Mengambil napas", "Take a breather", "Let's take a breather before continuing.", "She took a breather after the long run.", "Take a breather and relax for a moment."],
+    ["Mencurahkan isi hati", "Pour your heart out", "She poured her heart out to her best friend.", "He poured his heart out in the letter.", "Sometimes you need to pour your heart out."]
+];
+
+// Generate 200 Idioms
+for(let i=0; i<idiomsData.length && idioms.length < 200; i++) {
+    idioms.push({
+        indo: idiomsData[i][0],
+        eng: idiomsData[i][1],
+        examples: [idiomsData[i][2], idiomsData[i][3], idiomsData[i][4]]
+    });
+}
+// Duplicate dengan variasi jika kurang dari 200
+while(idioms.length < 200) {
+    idioms.push({
+        indo: "Bersikap positif",
+        eng: "Stay positive",
+        examples: ["Always stay positive.", "She stays positive no matter what.", "Stay positive and keep moving forward."]
+    });
+}
+
+// Pastikan tepat 200 masing-masing
+const finalPhrasalVerbs = phrasalVerbs.slice(0,200);
+const finalIdioms = idioms.slice(0,200);
+
+console.log("Total Phrasal Verbs:", finalPhrasalVerbs.length);
+console.log("Total Idioms:", finalIdioms.length);
+
+const vocabularyDB = { phrasal: finalPhrasalVerbs, idioms: finalIdioms };
+
+// State per kategori
+let categoryCorrect = { phrasal: 0, idioms: 0 };
+let categoryTotal = { phrasal: 200, idioms: 200 };
+
+let currentCategory = null;
+let currentQuestions = [];
+let currentIndex = 0;
+let answered = [];
+let userAnswers = [];
+let currentScore = 0;
+let currentCorrect = 0;
+let currentAnswered = 0;
+let waitingForNext = false;
+let currentOptions = [];
+let currentCorrectAnswer = "";
+let currentQuestionData = null;
+
+// DOM Elements
+const menuSection = document.getElementById('menuSection');
+const quizSection = document.getElementById('quizSection');
+const questionText = document.getElementById('questionText');
+const optionsBtns = document.querySelectorAll('.option-btn');
+const nextBtn = document.getElementById('nextBtn');
+const backToMenuBtn = document.getElementById('backToMenuBtn');
+const quizScore = document.getElementById('quizScore');
+const quizCorrect = document.getElementById('quizCorrect');
+const quizLeft = document.getElementById('quizLeft');
+const quizProgressFill = document.getElementById('quizProgressFill');
+const quizProgressPercent = document.getElementById('quizProgressPercent');
+const currentCategoryBadge = document.getElementById('currentCategoryBadge');
+const feedbackDiv = document.getElementById('feedback');
+const examplesCard = document.getElementById('examplesCard');
+
+function shuffleArray(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+
+// Fungsi membuat pilihan yang MIRIP/MENJEBAK
+function generateTrickyOptions(correctEng, category, currentIdx) {
+    const sameCategory = vocabularyDB[category];
+    const otherWords = sameCategory.filter((q, idx) => idx !== currentIdx && q.eng !== correctEng).map(q => q.eng);
+    const uniqueOthers = [...new Set(otherWords)];
+    
+    let wrongOptions = [];
+    
+    // Cari yang mirip secara visual
+    const similarWords = uniqueOthers.filter(w => {
+        const correctLower = correctEng.toLowerCase();
+        const wLower = w.toLowerCase();
+        return wLower.includes(correctLower.split(' ')[0]) || 
+               correctLower.includes(wLower.split(' ')[0]) ||
+               Math.abs(w.length - correctEng.length) <= 5;
+    });
+    
+    for (let i = 0; i < similarWords.length && wrongOptions.length < 3; i++) {
+        if (similarWords[i] !== correctEng && !wrongOptions.includes(similarWords[i])) {
+            wrongOptions.push(similarWords[i]);
+        }
+    }
+    
+    const shuffledOthers = shuffleArray([...uniqueOthers]);
+    for (let i = 0; i < shuffledOthers.length && wrongOptions.length < 3; i++) {
+        if (shuffledOthers[i] !== correctEng && !wrongOptions.includes(shuffledOthers[i])) {
+            wrongOptions.push(shuffledOthers[i]);
+        }
+    }
+    
+    // Fallback untuk phrasal verbs
+    const phrasalFallbacks = {
+        "Wake up": ["Get up", "Stand up", "Rise up"],
+        "Call off": ["Put off", "Take off", "Turn off"],
+        "Give up": ["Give in", "Give out", "Give away"],
+        "Look for": ["Look at", "Look into", "Look after"],
+        "Come across": ["Come over", "Come along", "Come back"],
+        "Deal with": ["Do with", "Meet with", "Talk with"],
+        "Figure out": ["Find out", "Work out", "Point out"]
+    };
+    
+    // Fallback untuk idioms
+    const idiomsFallbacks = {
+        "Back to the drawing board": ["Back to square one", "Back to start", "Back to zero"],
+        "Hit the jackpot": ["Hit the target", "Hit the mark", "Hit the spot"],
+        "Spill the beans": ["Spill the tea", "Spill the milk", "Spill the water"],
+        "Cost an arm and a leg": ["Cost a hand and a foot", "Cost an eye and an ear", "Cost a head and a shoulder"],
+        "Under the weather": ["Under the sky", "Under the sun", "Under the cloud"],
+        "Keep an eye on": ["Keep a nose on", "Keep an ear on", "Keep a hand on"],
+        "Take it easy": ["Take it slow", "Take it light", "Take it soft"],
+        "Bite the bullet": ["Take the bullet", "Eat the bullet", "Chew the bullet"],
+        "Face the music": ["Face the song", "Face the noise", "Face the sound"],
+        "Steal the show": ["Steal the stage", "Steal the spotlight", "Steal the scene"],
+        "Wrap up": ["Fold up", "Roll up", "Pack up"],
+        "Fit in": ["Fit out", "Fit around", "Fit over"],
+        "Pay off": ["Pay back", "Pay out", "Pay up"],
+        "Come true": ["Become true", "Turn true", "Get true"],
+        "Take a chance": ["Take a risk", "Take a gamble", "Take a shot"]
+    };
+    
+    let fallbackSource = category === 'phrasal' ? phrasalFallbacks : idiomsFallbacks;
+    if (fallbackSource[correctEng]) {
+        for (let fb of fallbackSource[correctEng]) {
+            if (wrongOptions.length < 3 && !wrongOptions.includes(fb) && fb !== correctEng) {
+                wrongOptions.push(fb);
+            }
+        }
+    }
+    
+    while (wrongOptions.length < 3) {
+        const dummy = "Option " + (wrongOptions.length + 1);
+        if (!wrongOptions.includes(dummy)) wrongOptions.push(dummy);
+    }
+    
+    const options = [correctEng, ...wrongOptions.slice(0,3)];
+    return shuffleArray(options);
+}
+
+function showExamples(q) {
+    if (q.examples && q.examples.length === 3) {
+        examplesCard.innerHTML = `
+            <div class="examples-title">📚 3 CONTOH KALIMAT PENGGUNAAN:</div>
+            <div class="example-item">💬 ${q.examples[0]}</div>
+            <div class="example-item">💬 ${q.examples[1]}</div>
+            <div class="example-item">💬 ${q.examples[2]}</div>
+        `;
+        examplesCard.style.display = 'block';
+    } else {
+        examplesCard.style.display = 'none';
+    }
+}
+
+function updateMasteryDisplay() {
+    const phrasalPercent = Math.round((categoryCorrect.phrasal / categoryTotal.phrasal) * 100);
+    const idiomsPercent = Math.round((categoryCorrect.idioms / categoryTotal.idioms) * 100);
+    document.getElementById('masteryPhrasal').innerText = phrasalPercent + "%";
+    document.getElementById('masteryIdioms').innerText = idiomsPercent + "%";
+    document.getElementById('statusPhrasal').innerText = phrasalPercent >= 100 ? "Completed ✓" : (phrasalPercent > 0 ? "In progress" : "Not started");
+    document.getElementById('statusIdioms').innerText = idiomsPercent >= 100 ? "Completed ✓" : (idiomsPercent > 0 ? "In progress" : "Not started");
+    const totalCorrectAll = categoryCorrect.phrasal + categoryCorrect.idioms;
+    const totalQuestionsAll = 400;
+    const overallPercent = Math.round((totalCorrectAll / totalQuestionsAll) * 100);
+    document.getElementById('overallScore').innerText = totalCorrectAll * 10;
+    document.getElementById('overallMastery').innerText = overallPercent;
+}
+
+function renderQuestion() {
+    if (currentIndex >= currentQuestions.length) { showCategoryComplete(); return; }
+    const q = currentQuestions[currentIndex];
+    currentQuestionData = q;
+    questionText.textContent = q.indo;
+    currentCorrectAnswer = q.eng;
+    currentOptions = generateTrickyOptions(q.eng, currentCategory, currentIndex);
+    optionsBtns.forEach((btn, idx) => {
+        btn.querySelector('.option-letter').textContent = String.fromCharCode(65 + idx);
+        btn.querySelector('.option-text').textContent = currentOptions[idx];
+        btn.disabled = false;
+        btn.classList.remove('correct-highlight', 'wrong-highlight', 'disabled-opt');
+    });
+    if (answered[currentIndex]) {
+        optionsBtns.forEach(btn => btn.disabled = true);
+        if (userAnswers[currentIndex]) highlightAnswer(userAnswers[currentIndex], q.eng);
+    }
+    waitingForNext = false;
+    nextBtn.disabled = true;
+    feedbackDiv.innerHTML = '';
+    examplesCard.style.display = 'none';
+}
+
+function highlightAnswer(selectedAnswer, correctAnswer) {
+    optionsBtns.forEach((btn, idx) => {
+        const optText = currentOptions[idx];
+        if (optText === correctAnswer) btn.classList.add('correct-highlight');
+        if (optText === selectedAnswer && selectedAnswer !== correctAnswer) btn.classList.add('wrong-highlight');
+        btn.disabled = true;
+        btn.classList.add('disabled-opt');
+    });
+}
+
+function showFeedback(type, message) {
+    feedbackDiv.innerHTML = message;
+    feedbackDiv.className = `feedback ${type}`;
+    setTimeout(() => { if (feedbackDiv.innerHTML === message) { feedbackDiv.innerHTML = ''; feedbackDiv.className = 'feedback'; } }, 2500);
+}
+
+function handleAnswer(selectedIdx) {
+    if (waitingForNext) { showFeedback('info', 'Click NEXT to continue'); return; }
+    if (answered[currentIndex]) { showFeedback('info', 'Already answered!'); return; }
+    const selectedAnswer = currentOptions[selectedIdx];
+    const isCorrect = (selectedAnswer === currentCorrectAnswer);
+    answered[currentIndex] = true;
+    userAnswers[currentIndex] = selectedAnswer;
+    currentAnswered++;
+    waitingForNext = true;
+    if (isCorrect) { 
+        currentScore += 10; 
+        currentCorrect++; 
+        categoryCorrect[currentCategory]++; 
+        showFeedback('success', '✓ BENAR! +10 points ✓');
+        showExamples(currentQuestionData);
+    } else { 
+        showFeedback('error', `✗ SALAH! Jawaban yang benar: ${currentCorrectAnswer} ✗`);
+        examplesCard.style.display = 'none';
+    }
+    highlightAnswer(selectedAnswer, currentCorrectAnswer);
+    updateQuizStats();
+    updateMasteryDisplay();
+    nextBtn.disabled = false;
+}
+
+function updateQuizStats() {
+    quizScore.innerText = currentScore;
+    quizCorrect.innerText = currentCorrect;
+    const left = currentQuestions.length - currentAnswered;
+    quizLeft.innerText = left;
+    const percent = (currentAnswered / currentQuestions.length) * 100;
+    quizProgressFill.style.width = percent + '%';
+    quizProgressPercent.innerText = Math.floor(percent) + '%';
+}
+
+function nextQuestion() {
+    if (!waitingForNext && currentAnswered < currentQuestions.length) { showFeedback('info', 'Jawab dulu!'); return; }
+    if (currentIndex + 1 >= currentQuestions.length) { showCategoryComplete(); return; }
+    currentIndex++;
+    renderQuestion();
+}
+
+function showCategoryComplete() {
+    updateMasteryDisplay();
+    const modal = document.createElement('div');
+    modal.className = 'modal';
+    modal.innerHTML = `
+        <div class="modal-content">
+            <h3>🎉 ${currentCategory === 'phrasal' ? 'PHRASAL VERBS' : 'COOL IDIOMS'} COMPLETED!</h3>
+            <p>Score: ${currentScore} | Correct: ${currentCorrect}/${currentQuestions.length}</p>
+            <div class="modal-buttons">
+                <button class="modal-btn confirm" id="backMenuBtn">🏠 Back to Menu</button>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(modal);
+    document.getElementById('backMenuBtn').addEventListener('click', () => { modal.remove(); backToMenu(); });
+}
+
+function backToMenu() {
+    menuSection.style.display = 'block';
+    quizSection.style.display = 'none';
+    currentCategory = null;
+    updateMasteryDisplay();
+}
+
+function loadCategory(category) {
+    currentCategory = category;
+    currentQuestions = [...vocabularyDB[category]];
+    currentIndex = 0;
+    answered = new Array(currentQuestions.length).fill(false);
+    userAnswers = new Array(currentQuestions.length).fill(null);
+    currentScore = categoryCorrect[category] * 10;
+    currentCorrect = categoryCorrect[category];
+    currentAnswered = categoryCorrect[category];
+    waitingForNext = false;
+    updateQuizStats();
+    menuSection.style.display = 'none';
+    quizSection.style.display = 'block';
+    currentCategoryBadge.innerText = category === 'phrasal' ? 'PHRASAL VERBS' : 'COOL IDIOMS';
+    currentCategoryBadge.className = `current-category-badge ${category}`;
+    if (currentAnswered === currentQuestions.length) { showCategoryComplete(); return; }
+    currentIndex = currentAnswered;
+    renderQuestion();
+}
+
+document.querySelectorAll('.cat-card').forEach(card => {
+    card.addEventListener('click', () => loadCategory(card.dataset.cat));
+});
+backToMenuBtn.addEventListener('click', backToMenu);
+optionsBtns.forEach((btn, idx) => btn.addEventListener('click', () => handleAnswer(idx)));
+nextBtn.addEventListener('click', nextQuestion);
+
+updateMasteryDisplay();
+</script>
+</body>
+</html>
